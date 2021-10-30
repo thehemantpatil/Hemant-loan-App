@@ -1,0 +1,48 @@
+<div class="main">
+  <app-header></app-header>
+
+  <form
+    class="container form-group card bg-black login_form needs-validation"
+    (ngSubmit)="signup()"
+    novalidate
+  >
+    <div class="text-center text-white input-group">
+      <span> Register with Us </span>
+    </div>
+
+    <input
+      required
+      [(ngModel)]="name"
+      type="text"
+      class="form-control"
+      name="name"
+      aria-describedby="inputGroupPrepend2"
+      placeholder="Full Name"
+    />
+    <div class="messageText" *ngIf="isNameValid">* Required</div>
+
+    <input
+      required
+      [(ngModel)]="email"
+      type="email"
+      class="form-control"
+      name="email"
+      placeholder="email"
+     
+    />
+    <div class="messageText" *ngIf="!isEmailValid">* {{invalidEmailMessage}}</div>
+
+    <input
+      required
+      [(ngModel)]="password"
+      type="password"
+      class="form-control"
+      name="password"
+      placeholder="password"
+    />
+    <div class="messageText" *ngIf="!isPasswordValid">* {{invalidPasswordMessage}}</div>
+    <button type="submit" class="btn p-2 bg-green text-white button">
+      Register
+    </button>
+  </form>
+</div>
