@@ -1,6 +1,6 @@
 <div class="main">
   <app-header></app-header>
-  <div *ngIf = "!isInvalidCredentials"  class="alert alert-danger alert-dismissible fade show" id="modal" role="alert">
+  <div *ngIf = "isInvalidCredentials"  class="alert alert-danger alert-dismissible fade show" id="modal" role="alert">
     Invalid Credentials
     <button (click)="toggleInvalidCredential()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
   </div>
