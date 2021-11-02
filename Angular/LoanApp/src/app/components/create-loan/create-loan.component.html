@@ -1,1 +1,108 @@
-<p>create-loan works!</p>
+<div class="main">
+  <div class="main_container card">
+    <div class="text-center pt-4 card-body">
+      <span id="heading">
+        <b>
+          Personal Loan Starts @ {{ loanConstraint.interestRate }}%* P.A.
+        </b></span
+      >
+    </div>
+    <form class="form_container pt-4 card-body" (ngSubmit)="createLoan()">
+      <div class="form_field">
+        <label for="Loan Amount" class="form-label"
+          >Loan Amount <span>(<span id="alterisk">*</span>)</span></label
+        >
+        <input
+          [(ngModel)]="loanDetails.loanAmount"
+          name="loanAmount"
+          type="number"
+          class="form-control"
+          placeholder="Loan Amount"
+          required
+        />
+      </div>
+      <div class="form_field">
+        <label for="Trade date" class="form-label"
+          >Trade date <span>(<span id="alterisk">*</span>)</span></label
+        >
+        <input
+          name="tradeDate"
+          type="text"
+          class="form-control"
+          value="{{ todaysDate }}"
+          readonly
+        />
+      </div>
+      <div class="form_field">
+        <label for="Maturity date" class="form-label"
+          >Loan Tenture <span>(<span id="alterisk">*</span>)</span>
+        </label>
+        
+        <select
+          
+          class="form-select"
+          [(ngModel)]="loanDetails.loanTenture"
+          name="loanTenture"
+          
+        >
+          <option   *ngFor="let year of loanTenture">
+            {{ year }} year
+          </option>
+        </select>
+
+        <div class="invalidMessage text-danger mt-1">
+          <span>{{ inValidMaturityDateMessage }} </span>
+        </div>
+      </div>
+      <div class="form_field">
+        <label for="Payment Frequency" class="form-label"
+          >Payment Frequency <span>(<span id="alterisk">*</span>)</span>
+        </label>
+        <select
+          class="form-select"
+          [(ngModel)]="loanDetails.paymentFrequency"
+          name="paymentFrequency"
+        >
+          <option *ngFor="let Frequency of loanConstraint.paymentFrequency">
+            {{ Frequency }}
+          </option>
+        </select>
+      </div>
+      <div class="form_field">
+        <label for="Payment Term" class="form-label"
+          >Payment Term <span>(<span id="alterisk">*</span>)</span></label
+        >
+        <select
+          class="form-select"
+          name="paymentTerm"
+          [(ngModel)]="loanDetails.paymentTerm"
+        >
+          <option *ngFor="let term of loanConstraint.paymentTerm">
+            {{ term }}
+          </option>
+        </select>
+      </div>
+      <div class="form_field">
+        <label for="Loan Reason" class="form-label"
+          >Loan Reason <span>(<span id="alterisk">*</span>)</span></label
+        >
+        <input
+          type="text"
+          name="loanReason"
+          [(ngModel)]="loanDetails.loanReason"
+          class="form-control"
+          placeholder="Loan Reason"
+        />
+      </div>
+      <div
+        class="active form_field form_buttons"
+        (click)="generatePaymentSchedule()"
+      >
+        <span>Payment Schedule</span>
+      </div>
+      <div class="form_field form_buttons_create">
+        <button type="submit" class="active">Create Loan</button>
+      </div>
+    </form>
+  </div>
+</div>

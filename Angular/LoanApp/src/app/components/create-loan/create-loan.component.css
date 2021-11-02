@@ -1,0 +1,57 @@
+.main{
+  display: grid;
+  grid-template-columns: 1fr;
+  padding-bottom: 40px;
+}
+#heading{
+    font-size: 18px;
+    opacity: 0.9;
+}
+label span #alterisk{
+    margin-top: 3px;
+    color: red;
+}
+.main_container{
+    /* justify-self: center; */
+    margin-left: 19%;
+    margin-right: 19%;
+    margin-top: 40px
+}
+.form_container{
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    padding-left: 7% ;
+    grid-row-gap: 30px;
+    
+}
+.active{
+    background-color: #10848C;
+    color: white;
+    padding: 10px 15px;
+    border-radius: 5px;
+
+}
+.form_buttons{
+    width: 50%;
+    justify-self: flex-end;
+    margin-right: 10%;
+    cursor: pointer;
+}
+
+.form_buttons_create{
+    width: 50%;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+label{
+    opacity: 0.8;
+}
+.form_field {
+    
+}
+.form_field input, select{
+    width: 90%;
+}

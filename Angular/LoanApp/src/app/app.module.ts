@@ -28,6 +28,7 @@ import { HomepageHeaderComponent } from './components/homepage-header/homepage-h
     AllLoanComponent,
     UpcomingLoanComponent,
     HomepageHeaderComponent,
+    CreateLoanComponent
   ],
   imports: [
     BrowserModule,
