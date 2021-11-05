@@ -1,0 +1,33 @@
+<div class="main" (click)="hideLogoutContainer($event)">
+  <div class="card py-2">
+    <nav class="d-flex justify-content-between card-body">
+      <div class="logo_heading_container">
+        <img src="../../../assets/logo.jpg" alt="logo" />
+      </div>
+      <div class="heading">
+        <span>Payment Schedule</span>
+      </div>
+      <div class="user_class" id="logout_container">
+        <img
+          (click)="toggleLogoutContainer($event)"
+          id="user_img"
+          src="../../../assets/user.png"
+          alt=""
+        />
+        <div *ngIf="showLogoutContainer" class="logout_container card">
+          <div class="card-body name_container" id="logout_container">
+            {{ userName }}
+          </div>
+          <div class="card-body px-3 pt-3 d-flex" id="logout_container">
+            <img
+              id="logout_image"
+              src="../../../assets/logout.png"
+              alt="logout"
+            />
+            <span class="logout_heading"> Logout </span>
+          </div>
+        </div>
+      </div>
+    </nav>
+  </div>
+</div>

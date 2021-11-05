@@ -3,11 +3,11 @@
     <div class="text-center pt-4 card-body">
       <span id="heading">
         <b>
-          Personal Loan Starts @ {{ loanConstraint.interestRate }}%* P.A.
+          Personal Loan Starts @ {{ loanDetails.interestRate }}%* P.A.
         </b></span
       >
     </div>
-    <form class="form_container pt-4 card-body" (ngSubmit)="createLoan()">
+    <form #form='ngForm' ngNativeValidate class="form_container pt-4 card-body" (ngSubmit)="createLoan()">
       <div class="form_field">
         <label for="Loan Amount" class="form-label"
           >Loan Amount <span>(<span id="alterisk">*</span>)</span></label
@@ -20,6 +20,7 @@
           placeholder="Loan Amount"
           required
         />
+        <!-- <div class="messageText" *ngIf="!loanDetails.loanAmount">* Required</div> -->
       </div>
       <div class="form_field">
         <label for="Trade date" class="form-label"
@@ -41,8 +42,9 @@
         <select
           
           class="form-select"
-          [(ngModel)]="loanDetails.loanTenture"
+          [(ngModel)]="loanTentureString"
           name="loanTenture"
+          required
           
         >
           <option   *ngFor="let year of loanTenture">
@@ -62,6 +64,7 @@
           class="form-select"
           [(ngModel)]="loanDetails.paymentFrequency"
           name="paymentFrequency"
+          required
         >
           <option *ngFor="let Frequency of loanConstraint.paymentFrequency">
             {{ Frequency }}
@@ -76,6 +79,7 @@
           class="form-select"
           name="paymentTerm"
           [(ngModel)]="loanDetails.paymentTerm"
+          required
         >
           <option *ngFor="let term of loanConstraint.paymentTerm">
             {{ term }}
@@ -92,6 +96,7 @@
           [(ngModel)]="loanDetails.loanReason"
           class="form-control"
           placeholder="Loan Reason"
+          required
         />
       </div>
       <div

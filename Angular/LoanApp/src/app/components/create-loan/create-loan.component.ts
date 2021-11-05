@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { paymentRecieptModal } from 'src/app/Modal/paymentReciept';
 import { FetchLoanConstraintsService } from 'src/app/services/fetch-loan-constraints.service';
+import { PostLoanDetailsService } from 'src/app/services/post-loan-details.service';
 
 @Component({
   selector: 'app-create-loan',
@@ -17,22 +18,26 @@ export class CreateLoanComponent implements OnInit {
 
   paymentScheduleList: any = [];
 
+  @Input() loanTentureString: string = '1 Year';
+
   loanConstraint = {
-    interestRate: 10.0,
     paymentFrequency: ['1 Month', '3 Month', '6 Month', '12 Month'],
     paymentTerm: ['Evenly', 'Interest'],
-    tradeDate: this.todaysDateObject,
   };
 
   @Input() loanDetails: any = {
+    customerId: null,
     loanAmount: null,
-    loanTenture: '1 Year',
+    loanReason: null,
+    interestRate: 10.0,
+    tradeDate: this.todaysDateObject,
+    maturityDate: null,
     paymentFrequency: '1 Month',
     paymentTerm: 'Evenly',
-    loanReason: null,
-    maturityDate: null,
   };
-  constructor(private loanConstraints: FetchLoanConstraintsService) {}
+
+  constructor(private loanConstraints: FetchLoanConstraintsService,
+              private postLoanDetails: PostLoanDetailsService) {}
 
   generateTodaysDate() {
     let day: any = this.todaysDateObject.getDate();
@@ -56,7 +61,7 @@ export class CreateLoanComponent implements OnInit {
 
   ngOnInit(): void {
     this.generateTodaysDate();
-
+    console.log(this.loanDetails.tradeDate);
     while (this.loanTenture[this.loanTenture.length - 1] < 20) {
       this.loanTenture.push(
         this.loanTenture[this.loanTenture.length - 1] + 0.5
@@ -72,22 +77,13 @@ export class CreateLoanComponent implements OnInit {
     // });
   }
 
-  createEvenlyPaymentSchedule(loanDuration: any) {
-    const totalMonths = Math.floor(loanDuration / 30);
-    const totalDays = loanDuration % 30;
-
-    for (let month = 0; month < totalMonths; month++) {
-      let repayDate = new Date();
-      repayDate.setDate(repayDate.getDate() + 30 * (month + 1));
-    }
+  postLoanDetailObjects(){
+    this.postLoanDetails.postLoanDetails(this.loanDetails,this.paymentScheduleList);
   }
 
   createLoan() {
-    // const tradeDuration = this.todaysDateObject.getTime();
-    // const loanDurationInMs = maturityDuration - tradeDuration;
-    // const loanDuration = Math.ceil(loanDurationInMs / (1000 * 3600 * 24));
-    // this.createEvenlyPaymentSchedule(loanDuration);
-    let loanTenture = this.loanDetails.loanTenture;
+ 
+    let loanTenture = this.loanTentureString;
     let loanTentureArr = loanTenture.split(' ');
     let paymentFrequencyArr = this.loanDetails.paymentFrequency.split(' ');
     let paymentFrequency = parseInt(paymentFrequencyArr[0]);
@@ -95,54 +91,68 @@ export class CreateLoanComponent implements OnInit {
     let totalMonths = totalYears * 12;
     let totalpaymentCycles = Math.floor(totalMonths / paymentFrequency);
     let totalHalfPaymentCycle = totalMonths % paymentFrequency ? 1 : 0;
-    let monthlyInterest = this.loanConstraint.interestRate / 12 / 100;
+    let monthlyInterest = this.loanDetails.interestRate / 12 / 100;
 
-    if (this.loanDetails.paymentTerm == 'Evenly') {
-      let monthlyPrincipalAmount = this.loanDetails.loanAmount / totalMonths;
-      let principalAmount = this.loanDetails.loanAmount;
-      for (
-        let paymentCycle = 1;
-        paymentCycle <= totalpaymentCycles;
-        paymentCycle++
-      ) {
-        let paymentReciept: any = {
-          interestAmount: null,
-          paymentStatus: null,
-          repayAmount: null,
-          repayDate: null,
-        };
+    let monthlyPrincipalAmount = this.loanDetails.loanAmount / totalMonths;
+    let principalAmount = this.loanDetails.loanAmount;
+    console.log(principalAmount);
+
+    for (
+      let paymentCycle = 1;
+      paymentCycle <= totalpaymentCycles;
+      paymentCycle++
+    ) {
+      let paymentReciept: any = {
+        interestAmount: null,
+        paymentStatus: null,
+        repayAmount: null,
+        repayDate: null,
+      };
+      if (this.loanDetails.paymentTerm == 'Evenly') {
         paymentReciept.repayAmount = monthlyPrincipalAmount * paymentFrequency;
         paymentReciept.interestAmount =
           principalAmount * (monthlyInterest * paymentFrequency);
         principalAmount -= paymentReciept.repayAmount;
-        paymentReciept.paymentStatus = 'unpaid';
-        paymentReciept.repayDate = new Date();
-        paymentReciept.repayDate.setDate(
-          this.todaysDateObject.getDate() +
-            30.42 * paymentFrequency * paymentCycle
-        );
-        this.paymentScheduleList.push(paymentReciept);
+      } else {
+        console.log(this.loanDetails.paymentTerm);
+        paymentReciept.repayAmount = 0;
+        paymentReciept.interestAmount =
+          principalAmount * (monthlyInterest * paymentFrequency);
       }
-      for (
-        let halfPaymentCycle = 1;
-        halfPaymentCycle <= totalHalfPaymentCycle;
-        halfPaymentCycle++
-      ) {
-        let paymentReciept: any = {
-          interestAmount:
-            principalAmount * (monthlyInterest * (paymentFrequency/2)),
-          paymentStatus: 'unpaid',
-          repayAmount: principalAmount,
-          repayDate: new Date(),
-        };
-        paymentReciept.repayDate.setDate(
-          paymentReciept.repayDate.getDate() +
-            30.42 * (paymentFrequency/2) * (totalpaymentCycles + 2)
-        );
-        this.paymentScheduleList.push(paymentReciept);
-      }
+      paymentReciept.paymentStatus = 'PROJECTED';
+      paymentReciept.repayDate = new Date();
+      paymentReciept.repayDate.setDate(
+        this.todaysDateObject.getDate() +
+          30.42 * paymentFrequency * paymentCycle
+      );
+      console.log(paymentReciept);
+      this.paymentScheduleList.push(paymentReciept);
     }
-    console.log(this.paymentScheduleList);
+    for (
+      let halfPaymentCycle = 1;
+      halfPaymentCycle <= totalHalfPaymentCycle;
+      halfPaymentCycle++
+    ) {
+      let paymentReciept: any = {
+        interestAmount:
+          principalAmount * ((monthlyInterest * paymentFrequency) / 2),
+        paymentStatus: 'PROJECTED',
+        repayAmount: principalAmount,
+        repayDate: this.todaysDateObject,
+      };
+      paymentReciept.repayDate.setDate(
+        paymentReciept.repayDate.getDate() +
+          30.42 * (paymentFrequency / 2) * (totalpaymentCycles + 2)
+      );
+      this.paymentScheduleList.push(paymentReciept);
+    }
+    if (this.loanDetails.paymentTerm == 'Interest') {
+      this.paymentScheduleList[
+        this.paymentScheduleList.length - 1
+      ].repayAmount = principalAmount;
+    }
+    this.loanDetails.maturityDate = this.paymentScheduleList[this.paymentScheduleList.length - 1].repayDate;
+    
   }
 
   generatePaymentSchedule() {}

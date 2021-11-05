@@ -1,0 +1,38 @@
+<div class="main my-4">
+    <div class="payment_container card" *ngFor="let payment of paymentCycles">
+      <div class="upper_container px-4 py-2">
+        <div class="date_row">
+          <span> {{ payment.repayDate }} </span>
+        </div>
+        <div class="heading_interest_row d-flex justify-content-between my-2">
+          <div class="amount_heading">
+            <span id="loan_reason">
+              <b> {{ payment.loanReason }} Loan </b></span
+            >
+            <span class="my-2" id="total_amount">{{ payment.principleAmount + payment.interestAmount }} Rs.</span>
+          </div>
+  
+          <div class="pay_btn card">
+              <span>Pay</span>
+          </div>
+        </div>
+      </div>
+      <div class="lower_container px-4 py-4">
+        <div class="frequency_amount_row d-flex justify-content-between">
+          <div class="frequency_column ">
+            <span> <b> Principle </b></span>
+            <span class="pe-2">{{ payment.principleAmount }}</span>
+          </div>
+          <div class="frequency_column">
+            <span> <b> Interest</b></span>
+            <span>{{ payment.interestAmount }} Rs.</span>
+          </div>
+          <div class="frequency_column">
+            <span> <b> Payment Status</b></span>
+            <span>{{ payment.paymentStatus }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

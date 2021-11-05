@@ -15,6 +15,8 @@ import { CreateLoanComponent } from './components/create-loan/create-loan.compon
 import { AllLoanComponent } from './components/all-loan/all-loan.component';
 import { UpcomingLoanComponent } from './components/upcoming-loan/upcoming-loan.component';
 import { HomepageHeaderComponent } from './components/homepage-header/homepage-header.component';
+import { PaymentScheduleHeaderComponent } from './components/payment-schedule-header/payment-schedule-header.component';
+import { PaymentScheduleListComponent } from './components/payment-schedule-list/payment-schedule-list.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +30,9 @@ import { HomepageHeaderComponent } from './components/homepage-header/homepage-h
     AllLoanComponent,
     UpcomingLoanComponent,
     HomepageHeaderComponent,
-    CreateLoanComponent
+    CreateLoanComponent,
+    PaymentScheduleHeaderComponent,
+    PaymentScheduleListComponent
   ],
   imports: [
     BrowserModule,

@@ -55,3 +55,8 @@ label{
 .form_field input, select{
     width: 90%;
 }
+.messageText{
+    color: indianred;
+    margin-top: 2px;
+    font-size: 12px;
+}
