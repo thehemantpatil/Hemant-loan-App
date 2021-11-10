@@ -78,7 +78,7 @@ http://localhost:8080/
 ### Database Schema
 <hr>
 
-![image](./Images/DataBase_Schema.PNG)
+![image](/Images/DataBase_Schema.PNG)
 
 <br>
 
