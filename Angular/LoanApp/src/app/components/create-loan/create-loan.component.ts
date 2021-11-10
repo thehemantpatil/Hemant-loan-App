@@ -21,7 +21,7 @@ export class CreateLoanComponent implements OnInit {
 
   modalVisible: boolean = false;
 
-  display = "none";
+  display = 'none';
 
   paymentScheduleList: any[] = [];
 
@@ -46,10 +46,12 @@ export class CreateLoanComponent implements OnInit {
     paymentTerm: 'Evenly',
   };
 
-  constructor(private loanConstraints: FetchLoanConstraintsService,
-              private postLoanDetails: PostLoanDetailsService,
-              private authService: AuthService,
-              private route: Router) {}
+  constructor(
+    private loanConstraints: FetchLoanConstraintsService,
+    private postLoanDetails: PostLoanDetailsService,
+    private authService: AuthService,
+    private route: Router
+  ) {}
 
   generateTodaysDate() {
     let day: any = this.todaysDateObject.getDate();
@@ -68,12 +70,11 @@ export class CreateLoanComponent implements OnInit {
     }
 
     this.todaysDate = day + '-' + month + '-' + year;
-
   }
 
   ngOnInit(): void {
     this.generateTodaysDate();
-   
+
     while (this.loanTenture[this.loanTenture.length - 1] < 20) {
       this.loanTenture.push(
         this.loanTenture[this.loanTenture.length - 1] + 0.5
@@ -81,47 +82,40 @@ export class CreateLoanComponent implements OnInit {
     }
 
     this.user = this.authService.getLocalUserObject();
-    if(this.user)
-        this.user = JSON.parse(this.user);
-        this.loanDetails.customerId = this.user.customerId;
-        console.log('post loan details coming');
+    if (this.user) this.user = JSON.parse(this.user);
+    this.loanDetails.customerId = this.user.customerId;
+    console.log('post loan details coming');
   }
 
-  postLoanDetailObjects(){
+  postLoanDetailObjects() {
     this.display = 'none';
     this.isLoading = true;
-    console.log(this.loanDetails)
-    console.log(this.paymentScheduleList)
-    this.postLoanDetails.postLoanDetails(this.loanDetails,this.paymentScheduleList).subscribe(
-      (response:any) => {
+    console.log(this.loanDetails);
+    console.log(this.paymentScheduleList);
+    this.postLoanDetails
+      .postLoanDetails(this.loanDetails, this.paymentScheduleList)
+      .subscribe((response: any) => {
         console.log(response);
-        console.log(response.paymentCycles, "payment");
+        console.log(response.paymentCycles, 'payment');
         this.paymentScheduleList = [];
         this.isLoading = false;
         Swal.fire({
           title: 'Loan is Created!',
           text: 'Do you want to continue',
           icon: 'success',
-          confirmButtonText: 'Yes',     
-        }).then((result)=>{
-
-           location.reload();
-          }
-        )
-      }
-    );
-    
-   
+          confirmButtonText: 'Yes',
+        }).then((result) => {
+          location.reload();
+        });
+      });
   }
 
-  closeModal(){
+  closeModal() {
     this.paymentScheduleList = [];
     this.display = 'none';
-
   }
 
   createLoan() {
- 
     let loanTenture = this.loanTentureString;
     let loanTentureArr = loanTenture.split(' ');
     let paymentFrequencyArr = this.loanDetails.paymentFrequency.split(' ');
@@ -148,7 +142,9 @@ export class CreateLoanComponent implements OnInit {
         repayDate: null,
       };
       if (this.loanDetails.paymentTerm == 'Evenly') {
-        paymentReciept.repayAmount = (monthlyPrincipalAmount * paymentFrequency).toFixed(2);
+        paymentReciept.repayAmount = (
+          monthlyPrincipalAmount * paymentFrequency
+        ).toFixed(2);
         paymentReciept.interestAmount =
           principalAmount * (monthlyInterest * paymentFrequency);
         principalAmount -= paymentReciept.repayAmount;
@@ -163,7 +159,8 @@ export class CreateLoanComponent implements OnInit {
         this.todaysDateObject.getDate() +
           30.42 * paymentFrequency * paymentCycle
       );
-      this.loanDetails.totalAmount += paymentReciept.repayAmount + paymentReciept.interestAmount;
+      this.loanDetails.totalAmount +=
+        paymentReciept.repayAmount + paymentReciept.interestAmount;
       this.paymentScheduleList.push(paymentReciept);
     }
     for (
@@ -183,7 +180,8 @@ export class CreateLoanComponent implements OnInit {
         paymentReciept.repayDate.getDate() +
           30.42 * (paymentFrequency / 2) * (totalpaymentCycles + 2)
       );
-      this.loanDetails.totalAmount += paymentReciept.repayAmount + paymentReciept.interestAmount;
+      this.loanDetails.totalAmount +=
+        paymentReciept.repayAmount + paymentReciept.interestAmount;
       this.paymentScheduleList.push(paymentReciept);
     }
     if (this.loanDetails.paymentTerm == 'Interest') {
@@ -193,11 +191,10 @@ export class CreateLoanComponent implements OnInit {
 
       this.loanDetails.totalAmount += principalAmount;
     }
-    this.loanDetails.maturityDate = this.paymentScheduleList[this.paymentScheduleList.length - 1].repayDate;
-    this.display = "block";
-    console.log(this.modalVisible)
+    this.loanDetails.maturityDate =
+      this.paymentScheduleList[this.paymentScheduleList.length - 1].repayDate;
+    this.display = 'block';
+    console.log(this.modalVisible);
     // this.postLoanDetailObjects();
   }
-
-  
 }

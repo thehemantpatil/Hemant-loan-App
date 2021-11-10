@@ -1,10 +1,24 @@
 <div class="main">
   <app-header></app-header>
-  <div *ngIf = "isInvalidCredentials"  class="alert alert-danger alert-dismissible fade show" id="modal" role="alert">
+  <div
+    *ngIf="isInvalidCredentials"
+    class="alert alert-danger alert-dismissible fade show"
+    id="modal"
+    role="alert"
+  >
     Invalid Credentials
-    <button (click)="toggleInvalidCredential()" type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    <button
+      (click)="toggleInvalidCredential()"
+      type="button"
+      class="btn-close"
+      data-bs-dismiss="alert"
+      aria-label="Close"
+    ></button>
   </div>
-  <form class="container form-group card bg-black login_form" (ngSubmit) = "login()">
+  <form
+    class="container form-group card bg-black login_form"
+    (ngSubmit)="login()"
+  >
     <div id="login_heading" class="text-center text-white">
       <span> Log In </span>
     </div>
@@ -25,10 +39,13 @@
       placeholder="password"
     />
 
-    <button type="submit" class="btn p-2 bg-green text-white button">Log In</button>
+    <button type="submit" class="btn p-2 bg-green text-white button">
+      Log In
+    </button>
 
     <div class="text-white signup_link">
-      Don’t have an account? <a [routerLink] = "['/signup']"> Create an account </a> 
+      Don’t have an account?
+      <a [routerLink]="['/signup']"> Create an account </a>
     </div>
   </form>
 </div>

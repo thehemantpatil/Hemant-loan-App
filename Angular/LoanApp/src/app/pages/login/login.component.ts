@@ -15,10 +15,10 @@ export class LoginComponent implements OnInit {
   constructor(private authService: AuthService, private route: Router) {}
 
   ngOnInit(): void {
-    let userObject:any = this.authService.getLocalUserObject();
+    let userObject: any = this.authService.getLocalUserObject();
     if (userObject) {
       userObject = JSON.parse(userObject);
-      console.log(typeof(userObject));
+      console.log(typeof userObject);
       let response = this.authService.login(
         userObject?.email,
         userObject?.password

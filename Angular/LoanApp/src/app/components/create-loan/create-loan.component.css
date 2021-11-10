@@ -1,121 +1,118 @@
-.main{
+.main {
   display: grid;
   grid-template-columns: 1fr;
   padding-bottom: 40px;
 }
-#heading{
-    font-size: 18px;
-    opacity: 0.9;
+#heading {
+  font-size: 18px;
+  opacity: 0.9;
 }
-label span #alterisk{
-    margin-top: 3px;
-    color: red;
+label span #alterisk {
+  margin-top: 3px;
+  color: red;
 }
-.modal_heading{
-    font-size: 1.3em;
+.modal_heading {
+  font-size: 1.3em;
 }
-.main_container{
-    /* justify-self: center; */
-    margin-left: 19%;
-    margin-right: 19%;
-    margin-top: 40px
+.main_container {
+  /* justify-self: center; */
+  margin-left: 19%;
+  margin-right: 19%;
+  margin-top: 40px;
 }
-.form_container{
-    
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    padding-left: 7% ;
-    grid-row-gap: 30px;
-    
+.form_container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding-left: 7%;
+  grid-row-gap: 30px;
 }
-.active{
-    background-color: #10848C;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
-
+.active {
+  background-color: #10848c;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
 }
-.form_buttons{
-    margin-right: 10%;
-    cursor: pointer;
+.form_buttons {
+  margin-right: 10%;
+  cursor: pointer;
 }
 
-.form_buttons_create{
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    grid-column: 1/3;
+.form_buttons_create {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  grid-column: 1/3;
 }
-.form_buttons_create button{
-    justify-self: center;
-    width: 100px;
-    height: 44px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 20px;
+.form_buttons_create button {
+  justify-self: center;
+  width: 100px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 20px;
 }
-label{
-    opacity: 0.8;
-}
-
-.form_field input, select{
-    width: 90%;
-}
-.messageText{
-    color: indianred;
-    margin-top: 2px;
-    font-size: 12px;
-}
-.payment_container{
-    grid-column:  2/6;
-    border: 1px dotted gray;
-    border-radius: 15px;
-}
-.pay_btn{
-    /* padding: 10px; */
-    height: 35px;
-    width: 70px;
-    background-color: #10848C;
-    color: white;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    cursor: pointer;
-}
-.pay_btn:hover{
-    background-color: #06535a;
-}
-.date_row span{
-    font-size: 0.8em;
-}
-#total_amount{
-    font-size: 0.8em;
+label {
+  opacity: 0.8;
 }
 
-.frequency_column{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    /* align-items: center; */
+.form_field input,
+select {
+  width: 90%;
 }
-.frequency_column span:nth-child(2){
-    font-size: 12px;
+.messageText {
+  color: indianred;
+  margin-top: 2px;
+  font-size: 12px;
 }
-.amount_heading{
-    display: flex;
-    flex-direction: column;
+.payment_container {
+  grid-column: 2/6;
+  border: 1px dotted gray;
+  border-radius: 15px;
 }
-#loan_reason{
-    font-size: 1.2em;
+.pay_btn {
+  /* padding: 10px; */
+  height: 35px;
+  width: 70px;
+  background-color: #10848c;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 5px;
+  cursor: pointer;
 }
-.upper_container{
-    border-bottom: 1px dotted gray;
+.pay_btn:hover {
+  background-color: #06535a;
+}
+.date_row span {
+  font-size: 0.8em;
+}
+#total_amount {
+  font-size: 0.8em;
+}
 
+.frequency_column {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  /* align-items: center; */
 }
-.modal-footer button{
-    background-color: #10848C;
+.frequency_column span:nth-child(2) {
+  font-size: 12px;
+}
+.amount_heading {
+  display: flex;
+  flex-direction: column;
+}
+#loan_reason {
+  font-size: 1.2em;
+}
+.upper_container {
+  border-bottom: 1px dotted gray;
+}
+.modal-footer button {
+  background-color: #10848c;
 }

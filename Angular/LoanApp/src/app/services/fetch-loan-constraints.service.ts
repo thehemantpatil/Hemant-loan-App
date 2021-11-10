@@ -7,28 +7,27 @@ import { AuthService } from './auth.service';
 })
 export class FetchLoanConstraintsService {
   private paymentCycleList: any;
-  private loanReason:any;
-  constructor(private http: HttpClient,
-              private auth:AuthService) {}
+  private loanReason: any;
+  constructor(private http: HttpClient, private auth: AuthService) {}
 
   fetchLoanConstraints() {
     const url = '';
     return this.http.get(url);
   }
   fetchLoanDeatails() {
-    let user:any = this.auth.getLocalUserObject();
-    if(user){
+    let user: any = this.auth.getLocalUserObject();
+    if (user) {
       user = JSON.parse(user);
     }
-    console.log(user.customerId + " customer");
+    console.log(user.customerId + ' customer');
     const url = 'http://localhost:8080/fetch-loan';
     const body = {
-      'customerId': user.customerId
-    }
-    return this.http.get(url, {"params":body});
+      customerId: user.customerId,
+    };
+    return this.http.get(url, { params: body });
   }
 
-  saveLoanPaymentCycles(paymentCycleList: any, loanReason:any) {
+  saveLoanPaymentCycles(paymentCycleList: any, loanReason: any) {
     this.paymentCycleList = paymentCycleList;
     this.loanReason = loanReason;
   }
@@ -36,7 +35,7 @@ export class FetchLoanConstraintsService {
   getPaymentCycles() {
     return this.paymentCycleList;
   }
-  getLoanReason(){
+  getLoanReason() {
     return this.loanReason;
   }
 }

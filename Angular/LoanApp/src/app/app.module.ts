@@ -17,7 +17,7 @@ import { UpcomingLoanComponent } from './components/upcoming-loan/upcoming-loan.
 import { HomepageHeaderComponent } from './components/homepage-header/homepage-header.component';
 import { PaymentScheduleHeaderComponent } from './components/payment-schedule-header/payment-schedule-header.component';
 import { PaymentScheduleListComponent } from './components/payment-schedule-list/payment-schedule-list.component';
-import {MatProgressBarModule} from '@angular/material/progress-bar';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
 @NgModule({
@@ -34,7 +34,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HomepageHeaderComponent,
     CreateLoanComponent,
     PaymentScheduleHeaderComponent,
-    PaymentScheduleListComponent
+    PaymentScheduleListComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,8 +44,7 @@ import { SweetAlert2Module } from '@sweetalert2/ngx-sweetalert2';
     HttpClientModule,
     MatProgressBarModule,
     BrowserAnimationsModule,
-    SweetAlert2Module
-
+    SweetAlert2Module,
   ],
   providers: [],
   bootstrap: [AppComponent],

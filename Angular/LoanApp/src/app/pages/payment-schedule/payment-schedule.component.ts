@@ -6,9 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./payment-schedule.component.css'],
 })
 export class PaymentScheduleComponent implements OnInit {
-
   constructor() {}
 
   ngOnInit(): void {}
-
 }

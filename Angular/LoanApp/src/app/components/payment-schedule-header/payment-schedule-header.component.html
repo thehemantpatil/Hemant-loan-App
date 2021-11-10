@@ -18,7 +18,11 @@
           <div class="card-body name_container" id="logout_container">
             {{ userName }}
           </div>
-          <div (click) = "logout()" class="card-body px-3 pt-3 d-flex" id="logout_container">
+          <div
+            (click)="logout()"
+            class="card-body px-3 pt-3 d-flex"
+            id="logout_container"
+          >
             <img
               id="logout_image"
               src="../../../assets/logout.png"

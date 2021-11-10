@@ -6,15 +6,14 @@ import { map } from 'rxjs/operators';
   providedIn: 'root',
 })
 export class AuthService {
-  constructor(private http: HttpClient,
-              private route: Router) {}
+  constructor(private http: HttpClient, private route: Router) {}
 
   saveUserObject(user: any) {
     localStorage.setItem('userObject', JSON.stringify(user));
     console.log(localStorage.getItem('userObject'));
   }
 
-  getLocalUserObject(){
+  getLocalUserObject() {
     return localStorage.getItem('userObject');
   }
   login(email: string, password: string) {
@@ -23,7 +22,7 @@ export class AuthService {
       email: email,
       password: password,
     };
-    console.log(email, password)
+    console.log(email, password);
     return this.http.post(url, body);
   }
 
@@ -37,8 +36,8 @@ export class AuthService {
     return this.http.post(url, body);
   }
 
-  logout(){
+  logout() {
     localStorage.clear();
-    this.route.navigate(['login'])
+    this.route.navigate(['login']);
   }
 }

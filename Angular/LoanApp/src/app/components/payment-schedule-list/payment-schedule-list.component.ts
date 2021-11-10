@@ -5,16 +5,15 @@ import { FetchLoanConstraintsService } from 'src/app/services/fetch-loan-constra
 @Component({
   selector: 'app-payment-schedule-list',
   templateUrl: './payment-schedule-list.component.html',
-  styleUrls: ['./payment-schedule-list.component.css']
+  styleUrls: ['./payment-schedule-list.component.css'],
 })
 export class PaymentScheduleListComponent implements OnInit {
-  paymentCycles: any =  [];
+  paymentCycles: any = [];
   loanReason: any;
-  constructor(private fetchLoan: FetchLoanConstraintsService) { }
+  constructor(private fetchLoan: FetchLoanConstraintsService) {}
 
   ngOnInit(): void {
     this.paymentCycles = this.fetchLoan.getPaymentCycles();
     this.loanReason = this.fetchLoan.getLoanReason();
   }
-
 }

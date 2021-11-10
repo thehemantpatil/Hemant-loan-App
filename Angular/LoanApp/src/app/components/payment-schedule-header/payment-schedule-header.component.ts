@@ -4,7 +4,7 @@ import { AuthService } from 'src/app/services/auth.service';
 @Component({
   selector: 'app-payment-schedule-header',
   templateUrl: './payment-schedule-header.component.html',
-  styleUrls: ['./payment-schedule-header.component.css']
+  styleUrls: ['./payment-schedule-header.component.css'],
 })
 export class PaymentScheduleHeaderComponent implements OnInit {
   userName: string = 'Hemant';
@@ -31,13 +31,12 @@ export class PaymentScheduleHeaderComponent implements OnInit {
       console.log('dkdkd');
       this.showLogoutContainer = false;
     }
-    if(!event.target.id){
+    if (!event.target.id) {
       this.showLogoutContainer = false;
     }
   }
 
-  logout(){
+  logout() {
     this.auth.logout();
   }
-
 }

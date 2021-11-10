@@ -14,7 +14,6 @@ export class HomepageComponent implements OnInit {
 
   ngOnInit(): void {
     this.route.paramMap.subscribe((param) => {
-      
       if (param.get('id') == '1') {
         this.createLoan = true;
         this.allLoans = false;

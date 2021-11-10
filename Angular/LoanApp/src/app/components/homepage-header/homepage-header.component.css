@@ -1,69 +1,66 @@
-.active{
-    background-color: #10848C;
-    color: white;
-    padding: 10px 15px;
-    border-radius: 5px;
+.active {
+  background-color: #10848c;
+  color: white;
+  padding: 10px 15px;
+  border-radius: 5px;
 }
-nav{
-    padding: 10px 30px;
+nav {
+  padding: 10px 30px;
 }
-.logo_heading_container img{
-    width: 30px;
-    height: 30px;
+.logo_heading_container img {
+  width: 30px;
+  height: 30px;
 }
 
-.user_class{
-    position: relative;
+.user_class {
+  position: relative;
 }
-.user_class img{
-    width: 20px;
-    height: 20px;
+.user_class img {
+  width: 20px;
+  height: 20px;
 }
-.logout_container{
-    right: 10px;
-    position: absolute;
-    z-index: 1;
-    top: 30px; 
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    transition: cubic-bezier(0.075, 0.82, 0.165, 1)
-    
+.logout_container {
+  right: 10px;
+  position: absolute;
+  z-index: 1;
+  top: 30px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1);
 }
-.logout_heading{
-    align-self: center;
-    margin-left: 3px;
-    cursor: pointer;
+.logout_heading {
+  align-self: center;
+  margin-left: 3px;
+  cursor: pointer;
 }
-.logout_heading:hover{
-    color: red;
+.logout_heading:hover {
+  color: red;
 }
-.name_container{
-    padding: 10px;
-    border-bottom: 1px dotted gray;
+.name_container {
+  padding: 10px;
+  border-bottom: 1px dotted gray;
 }
-#logout_image{
-    width: 15px;
-    height: 15px;
-    align-self: center;
-    cursor: pointer;
+#logout_image {
+  width: 15px;
+  height: 15px;
+  align-self: center;
+  cursor: pointer;
 }
-.nav_lists{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    padding-left: 10%;
-    padding-right: 10%;
-    align-items: center;
-    padding-top: 15px;
-    padding-bottom: 15px;
+.nav_lists {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-left: 10%;
+  padding-right: 10%;
+  align-items: center;
+  padding-top: 15px;
+  padding-bottom: 15px;
 }
-.nav_lists div{
-    display: grid;
-
+.nav_lists div {
+  display: grid;
 }
-.nav_lists div span{
-    align-self: center;
-    justify-self: center;
-    cursor: pointer;
-
+.nav_lists div span {
+  align-self: center;
+  justify-self: center;
+  cursor: pointer;
 }

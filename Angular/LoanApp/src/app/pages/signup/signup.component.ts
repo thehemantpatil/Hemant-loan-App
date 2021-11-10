@@ -80,7 +80,7 @@ export class SignupComponent implements OnInit {
     }
     console.log(!this.isNameValid, this.isEmailValid, this.isPasswordValid);
     if (!this.isNameValid && this.isEmailValid && this.isPasswordValid) {
-      console.log('all validated')
+      console.log('all validated');
       const response = this.authService.signUp(
         this.name,
         this.email,
