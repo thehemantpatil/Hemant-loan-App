@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-payment-schedule-header',
@@ -9,7 +10,7 @@ export class PaymentScheduleHeaderComponent implements OnInit {
   userName: string = 'Hemant';
   showLogoutContainer: boolean = false;
 
-  constructor() {}
+  constructor(private auth: AuthService) {}
 
   ngOnInit(): void {}
 
@@ -33,6 +34,10 @@ export class PaymentScheduleHeaderComponent implements OnInit {
     if(!event.target.id){
       this.showLogoutContainer = false;
     }
+  }
+
+  logout(){
+    this.auth.logout();
   }
 
 }

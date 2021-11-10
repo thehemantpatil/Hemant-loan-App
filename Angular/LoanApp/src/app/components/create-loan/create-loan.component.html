@@ -1,3 +1,4 @@
+<mat-progress-bar *ngIf = "isLoading" mode="indeterminate"></mat-progress-bar>
 <div class="main">
   <div class="main_container card">
     <div class="text-center pt-4 card-body">
@@ -7,7 +8,13 @@
         </b></span
       >
     </div>
-    <form #form='ngForm' ngNativeValidate class="form_container pt-4 card-body" (ngSubmit)="createLoan()">
+
+    <form
+      #form="ngForm"
+      ngNativeValidate
+      class="form_container pt-4 card-body"
+      (ngSubmit)="createLoan()"
+    >
       <div class="form_field">
         <label for="Loan Amount" class="form-label"
           >Loan Amount <span>(<span id="alterisk">*</span>)</span></label
@@ -38,18 +45,14 @@
         <label for="Maturity date" class="form-label"
           >Loan Tenture <span>(<span id="alterisk">*</span>)</span>
         </label>
-        
+
         <select
-          
           class="form-select"
           [(ngModel)]="loanTentureString"
           name="loanTenture"
           required
-          
         >
-          <option   *ngFor="let year of loanTenture">
-            {{ year }} year
-          </option>
+          <option *ngFor="let year of loanTenture">{{ year }} year</option>
         </select>
 
         <div class="invalidMessage text-danger mt-1">
@@ -99,15 +102,92 @@
           required
         />
       </div>
-      <div
-        class="active form_field form_buttons"
-        (click)="generatePaymentSchedule()"
-      >
-        <span>Payment Schedule</span>
-      </div>
+
       <div class="form_field form_buttons_create">
-        <button type="submit" class="active">Create Loan</button>
+        <button type="submit" class="active">Next</button>
       </div>
     </form>
+  </div>
+</div>
+<!-- Button trigger modal -->
+
+
+
+<!-- Modal -->
+<div class="modal_main">
+  <div
+    [ngStyle]="{ display: display }"
+    class="modal"
+    id="exampleModal"
+    tabindex="-1"
+    aria-labelledby="exampleModalLabel"
+    aria-hidden="true"
+  >
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4  class="modal-title modal_heading" id="exampleModalLabel">Payment Cycles</h4>
+          <button
+            type="button"
+            class="btn-close"
+            data-bs-dismiss="modal"
+            aria-label="Close"
+            (click)="closeModal()"
+          ></button>
+        </div>
+        <div class="modal-body">
+          <div
+            class="payment_container card my-3"
+            *ngFor="let payment of paymentScheduleList"
+          >
+            <div class="upper_container px-4 py-2">
+              <div class="date_row">
+                <span> {{ payment.repayDate | date }} </span>
+              </div>
+              <div
+                class="heading_interest_row d-flex justify-content-between my-2"
+              >
+                <div class="amount_heading">
+                  <span id="loan_reason">
+                    <b> {{ loanDetails.loanReason }} Loan </b></span
+                  >
+                  <span class="my-2" id="total_amount"
+                    >{{
+                      payment.repayAmount + payment.interestAmount
+                    }}
+                    Rs.</span
+                  >
+                </div>
+
+                <!-- <div aria-disabled="true" class="pay_btn card">
+                <span>Pay</span>
+              </div> -->
+              </div>
+            </div>
+            <div class="lower_container px-4 py-4">
+              <div class="frequency_amount_row d-flex justify-content-between">
+                <div class="frequency_column">
+                  <span> <b> Principle </b></span>
+                  <span class="pe-2">{{ payment.repayAmount }}</span>
+                </div>
+                <div class="frequency_column">
+                  <span> <b> Interest</b></span>
+                  <span>{{ payment.interestAmount }} Rs.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button
+            (click)="postLoanDetailObjects()"
+            type="button"
+            class="btn btn-primary"
+          >
+            Create Loan
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 </div>

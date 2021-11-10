@@ -14,20 +14,37 @@ export class LoginComponent implements OnInit {
 
   constructor(private authService: AuthService, private route: Router) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    let userObject:any = this.authService.getLocalUserObject();
+    if (userObject) {
+      userObject = JSON.parse(userObject);
+      console.log(typeof(userObject));
+      let response = this.authService.login(
+        userObject?.email,
+        userObject?.password
+      );
+      response.subscribe((response) => {
+        console.log(response, 'response coming');
+        if (response) {
+          this.route.navigate(['homepage', '1']);
+        }
+      });
+    }
+  }
 
   login() {
     console.log(this.email, this.password);
     const response = this.authService.login(this.email, this.password);
     response.subscribe((response) => {
       if (response) {
-        this.route.navigate([]);
+        this.authService.saveUserObject(response);
+        this.route.navigate(['homepage', '1']);
       } else {
         this.isInvalidCredentials = true;
       }
     });
   }
-  toggleInvalidCredential(){
+  toggleInvalidCredential() {
     this.isInvalidCredentials = !this.isInvalidCredentials;
   }
 }

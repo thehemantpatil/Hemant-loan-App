@@ -9,10 +9,12 @@ import { FetchLoanConstraintsService } from 'src/app/services/fetch-loan-constra
 })
 export class PaymentScheduleListComponent implements OnInit {
   paymentCycles: any =  [];
+  loanReason: any;
   constructor(private fetchLoan: FetchLoanConstraintsService) { }
 
   ngOnInit(): void {
     this.paymentCycles = this.fetchLoan.getPaymentCycles();
+    this.loanReason = this.fetchLoan.getLoanReason();
   }
 
 }

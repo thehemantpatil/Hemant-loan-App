@@ -11,6 +11,9 @@
     border: 1px solid white;
     width: 300px;
 }
+#login_heading span{
+    font-size: 1.3em;
+}
 .login_form{
     display: flex;
     flex-direction: column;

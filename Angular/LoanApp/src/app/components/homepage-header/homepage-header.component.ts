@@ -1,4 +1,5 @@
 import { Component, OnInit, Output } from '@angular/core';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-homepage-header',
@@ -11,7 +12,7 @@ export class HomepageHeaderComponent implements OnInit {
   
   
 
-  constructor() { }
+  constructor(private auth:AuthService) { }
 
   ngOnInit(): void {
     
@@ -33,6 +34,10 @@ export class HomepageHeaderComponent implements OnInit {
       this.showLogoutContainer = false;
       
     }
+  }
+
+  logout(){
+    this.auth.logout();
   }
 
  
