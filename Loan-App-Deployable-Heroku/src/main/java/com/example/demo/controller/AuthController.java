@@ -65,14 +65,14 @@ public class AuthController {
 	public Optional<Map> getCredentials(@RequestBody User user) {
 		
 		try {
+			
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
 			UserDetails userDetails = userDetailsServiceImplementation.loadUserByUsername(user.getEmail());
 			User newUser = userInterface.findByEmail(user.getEmail());
 			String token = jwtUtil.generateToken(userDetails, newUser);
 			return Optional.of(new HashMap(Map.of("token", token)));
-		}
-	catch(Exception e)
-	{
+			
+		} catch(Exception e) {
 			return Optional.ofNullable(null);
 		}
 
