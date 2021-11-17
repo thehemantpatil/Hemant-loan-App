@@ -63,7 +63,6 @@ public class AuthController {
 
 	@PostMapping("/login")
 	public Optional<Map> getCredentials(@RequestBody User user) {
-		System.out.println("Hemant Patil" + " my username is " + user.getEmail());
 		
 		try {
 			authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(user.getEmail(), user.getPassword()));
