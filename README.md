@@ -92,25 +92,25 @@ http://localhost:8080/
 - Login
 
 ```
-https://loan-app-spring-boot.herokuapp.com/auth/login
+POST: https://loan-app-spring-boot.herokuapp.com/auth/login
 ```
 
 - Signup
 
 ```
-https://loan-app-spring-boot.herokuapp.com/auth/signup
+POST: https://loan-app-spring-boot.herokuapp.com/auth/signup
 ```
 
 - Fetch loan details
 
 ```
-https://loan-app-spring-boot.herokuapp.com/loan/fetch-loan
+GET: https://loan-app-spring-boot.herokuapp.com/loan
 ```
 
 - Post loan details
 
 ```
-https://loan-app-spring-boot.herokuapp.com/loan/create-loan
+POST: https://loan-app-spring-boot.herokuapp.com/loan
 
 ```
 <br>
