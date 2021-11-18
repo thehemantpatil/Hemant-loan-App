@@ -84,6 +84,35 @@ http://localhost:8080/
 
 <br>
 
+### Api
+<hr>
+
+- Login
+
+```
+https://loan-app-spring-boot.herokuapp.com/auth/login
+```
+
+- Signup
+
+```
+https://loan-app-spring-boot.herokuapp.com/auth/signup
+```
+
+- Fetch loan details
+
+```
+https://loan-app-spring-boot.herokuapp.com/loan/fetch-loan
+```
+
+- Post loan details
+
+```
+https://loan-app-spring-boot.herokuapp.com/loan/create-loan
+
+```
+<br>
+
 ### API structure to Fetch Loan Details for Each Customer
 <hr>
 
